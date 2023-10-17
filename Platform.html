@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleform.css">
+</head>
+<body>
+    <div class="iphone-x">
+        <i></i>
+        <b></b>
+        <span></span>
+        <div class="app-header">
+            <s>Smart Home App</s>
+        </div>
+        <div class="app-content">
+            <div class="form-container"> <!-- Add a container for scrolling -->
+                <form id="smartHomeForm">
+                    <h2>Car Smart Charging</h2>
+                    <label for="soc">SoC:</label>
+                    <input type="text" id="soc" name="soc" readonly>
+                    <label for="readyAt">Ready at (date and time):</label>
+                    <input type="datetime-local" id="readyAt" name="readyAt" required>
+                    <label for="desiredSoC">Desired SoC:</label>
+                    <select id="desiredSoC" name="desiredSoC">
+                    </select>
+                    
+                    <h2>Washing Machine</h2>
+    
+                    <label for="washingReadyAt">Ready at (date and time):</label>
+                    <input type="datetime-local" id="washingReadyAt" name="washingReadyAt" required>
+                    
+                    <!-- Add more headers and fields as needed -->
+                    
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Function to handle form submission
+    document.getElementById('smartHomeForm').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent the form from actually submitting
+
+        // Get the form data
+        const formData = new FormData(this);
+        const csvData = [];
+
+        // Iterate over form fields and create CSV data
+        formData.forEach((value, key) => {
+            csvData.push(`"${key}","${value}"`); // Enclose values in double quotes
+        });
+
+        // Insert a header row
+        const headerRow = ['Parameter', 'Value'];
+        csvData.unshift(`"${headerRow.join('","')}"`);
+
+        // Convert CSV data to a string
+        const csvString = csvData.join('\n');
+
+        // Create a Blob and create a download link for the CSV file
+        const blob = new Blob([csvString], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const now = new Date();
+        const timestamp = `${now.getDate()}_${now.getMonth() + 1}_${now.getFullYear()}_${now.getHours()}_${now.getMinutes()}`;
+        const fileName = `input_data_${timestamp}.csv`; // Specify the directory and file name
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileName;
+
+        // Trigger the download
+        a.click();
+
+        // Clean up
+        window.URL.revokeObjectURL(url);
+    });
+
+        // Generate a random SoC value between 0 and 100
+        const randomSoC = Math.floor(Math.random() * 101);
+
+        // Calculate the nearest multiple of 5 for the SoC value
+        const nearestMultipleOf5 = 5 * Math.floor(randomSoC / 5);
+
+        // Populate the SoC field with the random value
+        document.getElementById('soc').value = `${randomSoC}%`;
+
+        // Populate the Desired SoC dropdown with options
+        const desiredSoCSelect = document.getElementById('desiredSoC');
+        for (let i = nearestMultipleOf5; i <= 100; i += 5) {
+            const option = document.createElement('option');
+            option.value = `${i}%`;
+            option.text = `${i === nearestMultipleOf5 ? randomSoC : i}%`; // Set the first value equal to SoC
+            desiredSoCSelect.appendChild(option);
+        }
+    </script>
+</body>
+</html>

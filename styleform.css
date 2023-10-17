@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.s {
+    font-size: 9px; /* Make it twice as small */
+    margin-top: 20px;
+}
+
+
+form {
+    text-align: left;
+    margin-top: 150px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="datetime-local"],
+input[type="number"],
+select { /* Apply styles to select element */
+    width: 93%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Add this CSS to your existing styleform.css */
+
+.form-container {
+    max-height: 500px; /* Adjust the maximum height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Enable smooth touch scrolling on iOS */
+}
+
+.app-content {
+    text-align: center;
+    padding: 20px;
+    padding-bottom: 500px; /* Increase the bottom padding for more scrollable space */
+}
+
+.iphone-x {
+    overflow: hidden; /* Hide the navigator bars */
+}
+
