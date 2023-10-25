@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Booking Form -->
+<h2>Booking Form</h2>
+<form id="bookingForm" action="submit_booking.php">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone">Phone Number:</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <label for="passengers">Number of Passengers:</label>
+    <input type="number" id="passengers" name="passengers" min="1" max="36" required>
+
+    <label>Preferred Date:</label>
+    <input type="date" name="preferred_date" required>
+
+    <label>Preferred Start Time:</label>
+    <input type="time" name="preferred_time" required>
+
+    <label for="hour">Select Number of Hours:</label>
+    <select id="hour" name="hour" required>
+        <option value="1">1 hour</option>
+        <option value="2">2 hours</option>
+        <option value="3">3 hours</option>
+        <option value="4">4 hours</option>
+        <option value="5">5 hours</option>
+        <option value="6">6 hours</option>
+        <option value="7">7 hours</option>
+        <option value="8">8 hours</option>
+        <option value="9">9 hours</option>
+        <option value="10">10 hours</option>
+        <option value="11">11 hours</option>
+        <option value="12">12 hours</option>
+    </select>
+
+    <label for="message">Additional Comments:</label>
+    <textarea id="message" name="message" rows="4"></textarea>
+
+    <label>Special Requests:</label>
+    <input type="checkbox" id="music_request" name="special_requests[]" value="Music Box"> <label for="music_request">Music Box</label>
+
+    <input type="submit" value="Submit">
+</form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
